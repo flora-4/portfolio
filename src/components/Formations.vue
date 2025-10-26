@@ -118,7 +118,7 @@ onMounted(() => {
             :style="{
               strokeDasharray: 314,
               strokeDashoffset: isVisible ? 0 : 314,
-              transition: 'stroke-dashoffset 3s ease-out',
+              transition: 'stroke-dashoffset 2s ease-out',
             }"
           />
           <path
@@ -131,7 +131,7 @@ onMounted(() => {
             :style="{
               strokeDasharray: 314,
               strokeDashoffset: isVisible ? 0 : 314,
-              transition: 'stroke-dashoffset 3s ease-out 0.5s',
+              transition: 'stroke-dashoffset 2s ease-out 0.3s',
             }"
           />
         </svg>
@@ -146,7 +146,7 @@ onMounted(() => {
             :style="{
               strokeDasharray: 220,
               strokeDashoffset: isVisible ? 0 : 220,
-              transition: 'stroke-dashoffset 2.5s ease-out 1s',
+              transition: 'stroke-dashoffset 1.9s ease-out 0.8s',
             }"
           />
         </svg>
@@ -231,7 +231,7 @@ onMounted(() => {
   height: 4px;
   background: #22d3ee;
   border-radius: 50%;
-  animation: pulse 3s infinite;
+  animation: pulse 2s infinite;
 }
 
 /* === HEADER === */
@@ -255,7 +255,7 @@ onMounted(() => {
   background: linear-gradient(to right, #22d3ee, #60a5fa, #a855f7);
   background-clip: text;  
   color: transparent;
-  animation: pulse 3s infinite alternate;
+  animation: pulse 2.2s infinite alternate;
 }
 .separator {
   width: 8rem;
@@ -265,7 +265,6 @@ onMounted(() => {
   border-radius: 4px;
 }
 
-/* === CONTENT === */
 .content {
   display: flex;
   flex-direction: column;
@@ -282,7 +281,6 @@ onMounted(() => {
   }
 }
 
-/* === LEFT PANEL === */
 .left-panel {
   position: relative;
   width: 400px;
@@ -340,7 +338,6 @@ onMounted(() => {
   color: #a5f3fc;
 }
 
-/* === TIMELINE === */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -371,7 +368,7 @@ onMounted(() => {
   transform: scale(1) rotate(0);
 }
 
-/* === CARD === */
+
 .card {
   background: linear-gradient(135deg, rgba(0, 20, 40, 0.8), rgba(0, 40, 80, 0.6));
   border: 1px solid rgba(0, 255, 255, 0.3);
@@ -433,13 +430,12 @@ onMounted(() => {
   line-height: 1.4;
 }
 
-/* === ANIMATIONS === */
 .scan-effect {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
   transform: translateX(-100%);
-  animation: scan 3s ease-in-out infinite;
+  animation: scan 2.5s ease-in-out infinite;
 }
 @keyframes pulse {
   0%, 100% { opacity: 1; }
@@ -450,11 +446,6 @@ onMounted(() => {
   100% { transform: translateX(200%) skewX(-12deg); }
 }
 
-/* =============================
-   📱 RESPONSIVE DESIGN
-============================= */
-
-/* --- TABLETTES (768–1024px) --- */
 @media (max-width: 1024px) {
   .header h2 { font-size: 2.5rem; }
   .left-panel { width: 300px; height: 480px; }
@@ -463,10 +454,9 @@ onMounted(() => {
   .number { width: 50px; height: 50px; font-size: 1rem; }
 }
 
-/* --- MOBILES (≤768px) --- */
 @media (max-width: 768px) {
   .header { padding: 2rem 0 1rem; }
-  .header h2 { font-size: 1.8rem; }
+  .header h2 { font-size: 2.4rem; }
   .separator { width: 5rem; height: 3px; }
 
   .content { flex-direction: column; align-items: center; }
@@ -512,9 +502,8 @@ onMounted(() => {
   }
 }
 
-/* --- TÉLÉPHONES ÉTROITS (≤480px) --- */
 @media (max-width: 480px) {
-  .header h2 { font-size: 1.5rem; }
+  .header h2 { font-size: 2rem; }
   .left-panel { width: 180px; height: 300px; }
   .card { width: 95%; padding: 0.8rem; }
   .card-content h3 { font-size: 0.9rem; }

@@ -290,7 +290,6 @@ async function handleSubmit() {
   animation: pulse 3s infinite;
 }
 
-/* Header */
 .contact-header {
   position: relative;
   z-index: 10;
@@ -319,6 +318,15 @@ async function handleSubmit() {
   .subtitle {
     font-size: 1.1rem;
     padding: 0 2rem;
+  }
+  /* .about-title {
+  font-size: 2rem;
+  }  */
+}
+
+@media (max-width: 480px) {
+    .about-title {
+  font-size: 2rem;
   }
 }
 

@@ -554,7 +554,7 @@ function getStatusGradient(status) {
 @media (max-width: 480px) {
   .project-media { height: 160px; }
   .project-title { font-size: 16px; }
-  .projects-title { font-size: 28px; }
+  .projects-title { font-size: 2em; }
 }
 
 </style>
