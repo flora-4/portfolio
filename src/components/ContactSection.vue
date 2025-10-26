@@ -1,6 +1,5 @@
 <template>
-  <div class="contact-section">
-    <!-- Particules d'arrière-plan -->
+<div class="contact-section" ref="contactSection">
     <div class="particles">
       <div
         v-for="(n, i) in 30"
@@ -179,31 +178,40 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, watch } from "vue";
 import emailjs from "@emailjs/browser";
+import { useIntersectionObserver } from '@/components/useIntersectionObserver' 
+const { element: contactSection, isVisible: sectionVisible } = useIntersectionObserver({
+  threshold: 0.2,
+  rootMargin: '0px 0px -10% 0px',
+  once: false, 
+  delayReset: 200,
+})
 
-const isVisible = ref(false);
-const isSubmitting = ref(false);
-const submitStatus = ref("");
-const statusMessage = ref("");
+const isVisible = ref(false)
+watch(sectionVisible, (visible) => {
+  isVisible.value = visible
+})
+const isSubmitting = ref(false)
+const submitStatus = ref("")
+const statusMessage = ref("")
 
 const formData = reactive({
   name: "",
   email: "",
   subject: "",
   message: ""
-});
+})
 
 const EMAILJS_CONFIG = {
   serviceID: "service_7v6w49q",
   templateID: "template_wlykvnd",
   publicKey: "iHUyRc9xlxRN0VVKN"
-};
+}
 
 onMounted(() => {
   emailjs.init(EMAILJS_CONFIG.publicKey);
-  setTimeout(() => (isVisible.value = true), 300);
-});
+})
 
 const contactInfo = [
   { icon: "📱", label: "Téléphone", value: "07 74 65 55 63", link: "tel:0774655563" },
@@ -295,20 +303,18 @@ async function handleSubmit() {
 }
 .highlight {
   background: linear-gradient(to right, #22d3ee, #a855f7, #ec4899);
-  -webkit-background-clip: text;
+  background-clip: text;  
   color: transparent;
 }
 .subtitle {
   color: rgba(191, 219, 254, 0.8);
   max-width: 650px;
-  margin: 0 auto; /* centré par défaut */
+  margin: 0 auto;
   text-align: center;
   font-size: 1rem;
   line-height: 1.6;
-  padding: 0 1rem; /* marges latérales sur petits écrans */
+  padding: 0 1rem; 
 }
-
-/* Sur écrans moyens et plus grands */
 @media (min-width: 768px) {
   .subtitle {
     font-size: 1.1rem;
@@ -344,8 +350,6 @@ async function handleSubmit() {
   background: linear-gradient(to right, #3b82f6, #06b6d4);
   border-radius: 9999px;
 }
-
-/* Grille */
 .contact-content {
   position: relative;
   z-index: 10;
@@ -361,7 +365,6 @@ async function handleSubmit() {
   }
 }
 
-/* Info section */
 .info-section {
   opacity: 0;
   transform: translateX(-20px);
@@ -385,7 +388,6 @@ async function handleSubmit() {
   color: #3b82f6;
 }
 
-/* Contact info */
 .info-item {
   opacity: 0;
   transform: translateY(20px);
@@ -556,8 +558,6 @@ button:disabled {
   color: rgba(191, 219, 254, 0.6);
   margin-top: 1rem;
 }
-
-/* Messages de statut */
 .status-message {
   display: flex;
   align-items: center;
@@ -580,16 +580,12 @@ button:disabled {
 .status-message .icon {
   margin-right: 8px;
 }
-
-/* Footer */
 footer {
   text-align: center;
   padding: 2rem 0;
   color: rgba(191, 219, 254, 0.8);
   font-size: 0.9rem;
 }
-
-/* Animations */
 @keyframes fade-in {
   from {
     opacity: 0;

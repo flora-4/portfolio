@@ -4,33 +4,27 @@
       class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       :class="{ scrolled: isScrolled }"
     >
-      <!-- header-inner gère le padding responsive via CSS (0 sur mobile, 40px sur grand écran) -->
       <div class="header-inner max-w-7xl mx-auto">
         <div class="flex items-center justify-between h-20">
-          <!-- Logo -->
           <div
             @click="scrollToSection('globetech')"
             class="flex items-center space-x-3 cursor-pointer group"
           >
             <div class="relative">
               <div
-                class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300"
+                class="w-12 h-12 bg-linear-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300"
               >
                 <span class="text-white font-bold text-xl">F</span>
               </div>
               <div
-                class="absolute -inset-1 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition-opacity duration-300"
+                class="absolute -inset-1 bg-linear-to-br from-cyan-400 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition-opacity duration-300"
               ></div>
             </div>
-
-            <!-- Texte du logo (masqué sur très petits écrans) -->
             <div class="hidden sm:block">
               <h2 class="text-xl font-bold text-white">Flora</h2>
               <p class="text-sm text-cyan-400 -mt-1">Dev Full Stack</p>
             </div>
           </div>
-
-          <!-- Navigation Desktop -->
           <nav class="hidden md:flex flex-1 justify-end gap-8">
             <button
               v-for="item in navigationItems"
@@ -97,17 +91,13 @@
         </div>
       </transition>
     </header>
-
-    <!-- Scroll to top -->
     <button
       v-if="isScrolled"
       @click="scrollToSection('globetech')"
-      class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-cyan-500/25 transform hover:scale-110 transition-all duration-300 z-40"
+      class="fixed bottom-8 right-8 w-14 h-14 bg-linear-to-br from-cyan-500 to-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-cyan-500/25 transform hover:scale-110 transition-all duration-300 z-40"
     >
       ↑
     </button>
-
-    <!-- Spacer -->
     <div class="h-20"></div>
   </div>
 </template>
@@ -164,35 +154,26 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
 <style scoped>
-/* Header always a darker bg with blur; scrolled adds shadow/border accent */
 .site-header {
-  background: rgba(17, 24, 39, 0.95); /* équivalent bg-gray-900/95 */
+  background: rgba(17, 24, 39, 0.95); 
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition: box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
-
-/* Lors du scroll, on renforce l'ombre + la bordure cyan */
 .site-header.scrolled {
   box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
-  border-bottom-color: rgba(6, 182, 212, 0.12); /* cyan-500/12 */
+  border-bottom-color: rgba(6, 182, 212, 0.12); 
 }
-
-/* header-inner : padding 0 par défaut (mobile) */
 .header-inner {
   padding-left: 0;
   padding-right: 0;
 }
-
-/* A partir de 1024px (grand écran), on met 40px de chaque côté */
 @media (min-width: 1024px) {
   .header-inner {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
-
-/* petites animations menu mobile */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.28s ease;
@@ -202,8 +183,6 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   opacity: 0;
   transform: translateY(-8px);
 }
-
-/* indicator pulse */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -212,10 +191,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* utilitaires blur fallback */
 .backdrop-blur-xl { backdrop-filter: blur(24px); }
 .backdrop-blur-sm { backdrop-filter: blur(4px); }
-
-/* glow logo */
 .blur { filter: blur(12px); }
 </style>

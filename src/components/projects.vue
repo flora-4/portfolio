@@ -11,7 +11,7 @@ import artAncestral from "../assets/art-ancestral.png";
 import livresUI from "../assets/livres-ui.png";
 import biotech from "../assets/biotech.png";
 
-const router = useRouter(); // importé pour compatibilité avec useNavigate initial (non utilisé ici)
+const router = useRouter(); 
 
 const projects = [
   {
@@ -129,8 +129,6 @@ const imageErrors = ref({});
 
 onMounted(() => {
   const timer = setTimeout(() => (isVisible.value = true), 300);
-  // cleanup not strictly necessary here (component unmount will clear), but follow good practice
-  // no access to unmount hook in <script setup> without defineExpose — acceptable
 });
 
 const filteredProjects = computed(() => {
@@ -150,20 +148,19 @@ function handleImageLoad(index) {
 function getStatusGradient(status) {
   switch (status) {
     case "En ligne":
-      return "linear-gradient(90deg, #10b981, #059669)"; // green -> emerald
+      return "linear-gradient(90deg, #10b981, #059669)"; 
     case "Terminé":
-      return "linear-gradient(90deg, #3b82f6, #06b6d4)"; // blue -> cyan
+      return "linear-gradient(90deg, #3b82f6, #06b6d4)"; 
     case "En cours":
-      return "linear-gradient(90deg, #f59e0b, #f97316)"; // yellow -> orange
+      return "linear-gradient(90deg, #f59e0b, #f97316)"; 
     default:
-      return "linear-gradient(90deg, #6b7280, #4b5563)"; // gray
+      return "linear-gradient(90deg, #6b7280, #4b5563)"; 
   }
 }
 </script>
 
 <template>
   <div class="projects-root">
-    <!-- Header -->
     <header class="projects-header">
       <h2 class="projects-title">
         MES
@@ -174,8 +171,6 @@ function getStatusGradient(status) {
         Découvrez une sélection de mes réalisations, allant du développement web au design d'interfaces
       </p>
     </header>
-
-    <!-- Filters -->
     <div class="filters-wrap">
       <div class="filters">
         <button
@@ -190,8 +185,6 @@ function getStatusGradient(status) {
         </button>
       </div>
     </div>
-
-    <!-- Grid -->
     <main class="grid-wrap">
       <div class="grid">
         <div
@@ -201,7 +194,6 @@ function getStatusGradient(status) {
           @mouseenter="hoveredProject = project.id"
           @mouseleave="hoveredProject = null"
         >
-          <!-- Glow background (appears on hover) -->
           <div
             class="project-glow"
             :style="{
@@ -210,10 +202,7 @@ function getStatusGradient(status) {
                 'linear-gradient(90deg, rgba(34,211,238,0.25), rgba(168,85,247,0.18), rgba(236,72,153,0.18))'
             }"
           />
-
-          <!-- Card -->
           <article class="project-card" :class="{ hovered: hoveredProject === project.id }">
-            <!-- Image area -->
             <div class="project-media">
               <img
                 v-if="!imageErrors[idx]"
@@ -227,29 +216,21 @@ function getStatusGradient(status) {
               <div v-else class="fallback">
                 {{ project.title.split(' ').map(w => w[0]).join('').slice(0, 3) }}
               </div>
-
-              <!-- Status badge -->
               <div
                 class="badge status-badge"
                 :style="{ background: getStatusGradient(project.status) }"
               >
                 {{ project.status }}
               </div>
-
-              <!-- Year badge -->
               <div class="badge year-badge">
                 {{ project.year }}
               </div>
-
-              <!-- Hover overlay with link -->
               <div class="media-overlay" :class="{ visible: hoveredProject === project.id }">
                 <a :href="project.link" target="_blank" rel="noopener noreferrer" class="visit-btn">
                   Voir le projet →
                 </a>
               </div>
             </div>
-
-            <!-- Content -->
             <div class="project-body">
               <span class="category">{{ project.category }}</span>
               <h3 class="project-title" :class="{ accent: hoveredProject === project.id }">{{ project.title }}</h3>
@@ -330,8 +311,6 @@ function getStatusGradient(status) {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(200%); }
 }
-
-/* Filters */
 .filters-wrap {
   display: flex;
   justify-content: center;
@@ -501,8 +480,6 @@ function getStatusGradient(status) {
   transition: transform 0.25s ease;
 }
 .visit-btn:hover { transform: translateY(-3px) }
-
-/* Body */
 .project-body {
   padding: 18px;
 }
@@ -511,9 +488,8 @@ function getStatusGradient(status) {
   font-weight: 700;
   font-size: 13px;
 }
-/* Harmonisation du titre avec les autres sections */
 .projects-title {
-  font-size: 3rem; /* ≈ 48px : cohérent avec la section Expériences */
+  font-size: 3rem; 
   font-weight: 900;
   display: inline-block;
   position: relative;
@@ -524,13 +500,13 @@ function getStatusGradient(status) {
 
 @media (max-width: 768px) {
   .projects-title {
-    font-size: 2.4rem; /* bonne lisibilité sur tablette */
+    font-size: 2.4rem;
   }
 }
 
 @media (max-width: 480px) {
   .projects-title {
-    font-size: 2rem; /* même taille mobile que les autres */
+    font-size: 2rem; 
   }
 }
 

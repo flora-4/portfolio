@@ -147,7 +147,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* ---- Global Layout ---- */
 .experiences-container {
   min-height: 100vh;
   color: #fff;
@@ -155,8 +154,6 @@ onMounted(() => {
   overflow: hidden;
   padding: 2rem 1rem;
 }
-
-/* ---- Header ---- */
 .header {
   text-align: center;
   opacity: 0;
@@ -193,7 +190,8 @@ onMounted(() => {
 
 .gradient-text {
   background: linear-gradient(to right, #22d3ee, #a855f7, #ec4899);
-  -webkit-background-clip: text;
+  -webkit-background-clip: text; 
+  background-clip: text;         
   color: transparent;
   animation: gradientMove 5s ease infinite alternate;
 }
@@ -213,8 +211,6 @@ onMounted(() => {
   margin: 0 auto;
   line-height: 1.6;
 }
-
-/* ---- Cards ---- */
 .cards-container {
   display: grid;
   gap: 2rem;
@@ -457,8 +453,6 @@ onMounted(() => {
     padding: 1.5rem;
   }
 }
-
-/* --- Badge “Stage” amélioré --- */
 .badge {
   position: absolute;
   top: 14px;
@@ -471,8 +465,6 @@ onMounted(() => {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   z-index: 5;
-
-  /* meilleure visibilité */
   border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 18px rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(4px);
@@ -485,8 +477,6 @@ onMounted(() => {
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
 }
 
-
-/* ---- Animations ---- */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;

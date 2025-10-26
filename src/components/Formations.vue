@@ -39,8 +39,14 @@ const formations = [
     imageAlt: "Logo IUT DOUALA",
   },
 ];
+import { useIntersectionObserver } from "@/components/useIntersectionObserver";
+const { element, isVisible } = useIntersectionObserver({
+  threshold: 0.25,
+  rootMargin: '0px 0px -15% 0px',
+  once: false,   
+  delayReset: 500, 
+})
 
-const isVisible = ref(false);
 const imageErrors = ref({});
 
 const handleImageError = (index) => {
@@ -57,7 +63,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="formations-container">
+  <div ref="element" class="formations-container">
     <!-- Particules -->
     <div class="particles">
       <div
@@ -247,7 +253,7 @@ onMounted(() => {
 }
 .gradient-text {
   background: linear-gradient(to right, #22d3ee, #60a5fa, #a855f7);
-  -webkit-background-clip: text;
+  background-clip: text;  
   color: transparent;
   animation: pulse 3s infinite alternate;
 }

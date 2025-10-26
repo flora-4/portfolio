@@ -125,7 +125,7 @@ onMounted(() => {
 <style scoped>
 .gradient-text {
   background: linear-gradient(to right, #06b6d4, #3b82f6, #9333ea);
-  -webkit-background-clip: text;
+  background-clip: text;  
   -webkit-text-fill-color: transparent;
 }
 
