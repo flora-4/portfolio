@@ -190,7 +190,11 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-
+nav button,
+button,
+.cursor-pointer {
+  cursor: pointer;
+}
 .backdrop-blur-xl { backdrop-filter: blur(24px); }
 .backdrop-blur-sm { backdrop-filter: blur(4px); }
 .blur { filter: blur(12px); }
