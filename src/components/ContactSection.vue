@@ -162,10 +162,6 @@
               <span v-if="isSubmitting" class="spinner"></span>
               <span v-else>⚡ Envoyer le message</span>
             </button>
-
-            <p class="secure-note">
-              Sécurisé par EmailJS • Pas de stockage des données
-            </p>
           </form>
         </div>
       </div>
