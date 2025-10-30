@@ -4,20 +4,21 @@
       class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       :class="{ scrolled: isScrolled }"
     >
-      <div class="header-inner max-w-7xl mx-auto">
+      <div class="header-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
+          <!-- Logo -->
           <div
             @click="scrollToSection('globetech')"
             class="flex items-center space-x-3 cursor-pointer group"
           >
             <div class="relative">
               <div
-                class="w-12 h-12 bg-linear-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300"
+                class="w-12 h-12 bg-linear-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300"
               >
                 <span class="text-white font-bold text-xl">F</span>
               </div>
               <div
-                class="absolute -inset-1 bg-linear-to-br from-cyan-400 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition-opacity duration-300"
+                class="absolute -inset-1 bg-linear-to-br from-cyan-400 to-blue-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300"
               ></div>
             </div>
             <div class="hidden sm:block">
@@ -25,12 +26,14 @@
               <p class="text-sm text-cyan-400 -mt-1">Dev Full Stack</p>
             </div>
           </div>
+
+          <!-- Navigation desktop -->
           <nav class="hidden md:flex flex-1 justify-end gap-8">
             <button
               v-for="item in navigationItems"
               :key="item.id"
               @click="scrollToSection(item.id)"
-              :class="[
+              :class="[ 
                 'relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 group',
                 activeSection === item.id
                   ? 'text-cyan-400 bg-cyan-500/10 shadow-lg'
@@ -71,13 +74,13 @@
           class="md:hidden absolute top-full left-0 right-0 bg-gray-900/98 backdrop-blur-xl border-t border-gray-700/50"
         >
           <div class="max-w-7xl mx-auto px-4 py-4">
-            <nav class="flex flex-col gap-3">
+            <nav class="flex flex-col gap-4">
               <button
                 v-for="item in navigationItems"
                 :key="item.id"
                 @click="scrollToSection(item.id)"
                 :class="[ 
-                  'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200',
+                  'w-full flex items-center gap-3 px-6 py-3 rounded-xl text-left transition-all duration-200',
                   activeSection === item.id
                     ? 'text-cyan-400 bg-cyan-500/10'
                     : 'text-gray-300 hover:text-white hover:bg-white/5'
@@ -91,6 +94,8 @@
         </div>
       </transition>
     </header>
+
+    <!-- Bouton retour en haut -->
     <button
       v-if="isScrolled"
       @click="scrollToSection('globetech')"
@@ -98,6 +103,8 @@
     >
       ↑
     </button>
+
+    <!-- Espacement sous header -->
     <div class="h-20"></div>
   </div>
 </template>
@@ -122,7 +129,6 @@ const navigationItems = [
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
-
   const current = navigationItems.find((item) => {
     const element = document.getElementById(item.id)
     if (element) {
@@ -131,7 +137,6 @@ const handleScroll = () => {
     }
     return false
   })
-
   if (current) activeSection.value = current.id
 }
 
@@ -155,25 +160,35 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
 <style scoped>
 .site-header {
-  background: rgba(17, 24, 39, 0.95); 
+  background: rgba(17, 24, 39, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition: box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 .site-header.scrolled {
   box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
-  border-bottom-color: rgba(6, 182, 212, 0.12); 
+  border-bottom-color: rgba(6, 182, 212, 0.12);
 }
+
+/* Espacement responsive du header */
 .header-inner {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .header-inner {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 @media (min-width: 1024px) {
   .header-inner {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
+
+/* Animation du menu mobile */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.28s ease;
@@ -183,6 +198,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   opacity: 0;
   transform: translateY(-8px);
 }
+
+/* Animation du point actif */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -190,6 +207,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Divers */
 nav button,
 button,
 .cursor-pointer {
